@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import StyledInput from "../../components/StyledInput";
-import StyledButton from "../../components/StylesButton";
+import StyledButton from "../../components/StyledButton";
 
 const Login = () => {
     return (
@@ -15,8 +15,8 @@ const Login = () => {
                 <StyledButton type='submit'>
                     Entrar
                 </StyledButton>
-                <StyledButton style='secundary'>
-                    Entrar
+                <StyledButton themeType='secundary'>
+                    Primeira vez? Cadastre-se!
                 </StyledButton>
             </form>
         </StyledLogin>
