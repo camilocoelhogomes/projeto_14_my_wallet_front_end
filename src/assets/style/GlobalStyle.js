@@ -1,9 +1,25 @@
 import { createGlobalStyle } from "styled-components";
+import RelewayNormal from '../fonts/Raleway/Raleway-Regular.ttf';
+import RelewayBold from '../fonts/Raleway/Raleway-Bold.ttf';
+import SairaStencilOne from '../fonts/Saira_Stencil_One/SairaStencilOne-Regular.ttf';
 
 
 const GlobalStyle = createGlobalStyle`
 
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Saira+Stencil+One&display=swap');
+@font-face {
+  font-family: SairaStencilOne;
+  src: url(${SairaStencilOne});
+}
+
+@font-face {
+  font-family: RelewayNormal;
+  src: url(${RelewayNormal});
+}
+
+@font-face {
+  font-family: RelewayBold;
+  src: url(${RelewayBold});
+}
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -24,6 +40,7 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	font-family: 'RelawayNormal';
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -53,17 +70,16 @@ table {
 }
 
 h1{
-    font-family: 'Saira Stencil One', cursive;
+    font-family: 'SairaStencilOne', cursive;
     font-size: 32px;
     line-height: 50px;
     color:#FFFFFF;
 }
 
 h2{
-    font-family: 'Raleway', sans-serif;
+    font-family: 'RelawayBold', sans-serif;
     font-size: 26px;
     line-height: 31px;
-    font-weight: 700;
     color:#FFFFFF;
 }
 
