@@ -1,23 +1,74 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 import StyledInput from "../../components/StyledInput";
 import StyledButton from "../../components/StyledButton";
+import { siginIn } from "../../servicces/backEndConnection";
+import { siginInSchema } from "../../servicces/validations";
 
 const Login = () => {
+    const [userData, setUserData] = useState({
+        email: '',
+        password: '',
+    });
+
+    const [disabledForm, setDisabledForm] = useState(false);
+    const [inputError, setInputError] = useState(false);
+
+    const inputHandler = ({ input, value }) => {
+        setInputError(false);
+        const newUserData = { ...userData };
+        newUserData[input] = value;
+        setUserData(newUserData);
+    }
+
+    const sendToServer = (e) => {
+        e.preventDefault();
+        if (disabledForm) return
+        const { error: joiError } = siginInSchema.validate(userData);
+        if (joiError) {
+            setInputError(!!joiError);
+            return;
+        }
+        setInputError(!!joiError);
+        setDisabledForm(true);
+        siginIn(userData)
+            .then((res) => {
+                setDisabledForm(false);
+            })
+            .catch((err) => {
+                setInputError(true)
+                setDisabledForm(false);
+            })
+    }
+
     return (
         <StyledLogin>
             <header className='header-login'>
                 <h1>MyWallet</h1>
             </header>
-            <form className='submit-form'>
-                <StyledInput placeholder='E-mail' />
-                <StyledInput placeholder='Senha' />
+            <form className='submit-form' onSubmit={sendToServer}>
+                <StyledInput
+                    disabled={disabledForm}
+                    error={inputError}
+                    placeholder='E-mail'
+                    onChange={(e) => inputHandler({ input: 'email', value: e.target.value })}
+                />
+                <StyledInput
+                    disabled={disabledForm}
+                    error={inputError}
+                    placeholder='Senha'
+                    onChange={(e) => inputHandler({ input: 'password', value: e.target.value })}
+                    type='password'
+                />
                 <StyledButton type='submit'>
                     Entrar
                 </StyledButton>
-                <StyledButton themeType='secundary'>
-                    Primeira vez? Cadastre-se!
-                </StyledButton>
+                <Link to='/SignUp'>
+                    <StyledButton themeType='secundary'>
+                        Primeira vez? Cadastre-se!
+                    </StyledButton>
+                </Link>
             </form>
         </StyledLogin>
     )

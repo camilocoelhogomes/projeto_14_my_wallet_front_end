@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import StyledInput from "../../components/StyledInput";
 import StyledButton from "../../components/StyledButton";
 
@@ -17,9 +18,11 @@ const SignUp = () => {
                 <StyledButton type='submit'>
                     Cadastrar
                 </StyledButton>
-                <StyledButton themeType='secundary'>
-                    Já tem uma conta? Entre Agora
-                </StyledButton>
+                <Link to='/'>
+                    <StyledButton themeType='secundary'>
+                        Já tem uma conta? Entre Agora
+                    </StyledButton>
+                </Link>
             </form>
         </StyledLogin>
     )
