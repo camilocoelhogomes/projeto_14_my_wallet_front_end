@@ -15,7 +15,7 @@ const SignUp = () => {
                 <StyledInput placeholder='Senha' />
                 <StyledInput placeholder='Confirme a Senha' />
                 <StyledButton type='submit'>
-                    Entrar
+                    Cadastrar
                 </StyledButton>
                 <StyledButton themeType='secundary'>
                     Já tem uma conta? Entre Agora
