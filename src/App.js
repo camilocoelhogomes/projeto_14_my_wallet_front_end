@@ -1,11 +1,12 @@
 import React from "react";
 import GlobalStyle from "./assets/style/GlobalStyle";
-import Login from "./pages/login/Login";
+import RoutesConfig from "./RoutesConfig/RoutesConfig";
+
 function App() {
   return (
     <div className="App">
       <GlobalStyle />
-      <Login />
+      <RoutesConfig />
 
     </div>
   );

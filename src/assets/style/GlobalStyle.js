@@ -83,6 +83,10 @@ h2{
     color:#FFFFFF;
 }
 
+input:focus, textarea:focus, select:focus{
+        outline: none;
+    }
+
 *{
     box-sizing: border-box;
 }
