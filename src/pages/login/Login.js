@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
 import StyledInput from "../../components/StyledInput";
 import StyledButton from "../../components/StyledButton";
 import { siginIn } from "../../servicces/backEndConnection";
 import { siginInSchema } from "../../servicces/validations";
+import UserContext from "../../store/UserContext";;
 
 const Login = () => {
     const [userData, setUserData] = useState({
@@ -14,6 +15,7 @@ const Login = () => {
 
     const [disabledForm, setDisabledForm] = useState(false);
     const [inputError, setInputError] = useState(false);
+    const { setUser } = useContext(UserContext);
 
     const inputHandler = ({ input, value }) => {
         setInputError(false);
@@ -35,6 +37,10 @@ const Login = () => {
         siginIn(userData)
             .then((res) => {
                 setDisabledForm(false);
+                setUser({
+                    name: res.data.name,
+                    token: res.data.token,
+                })
             })
             .catch((err) => {
                 setInputError(true)

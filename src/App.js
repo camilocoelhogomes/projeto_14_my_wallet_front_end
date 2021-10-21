@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import UserContext from './store/UserContext';
 import GlobalStyle from "./assets/style/GlobalStyle";
 import RoutesConfig from "./RoutesConfig/RoutesConfig";
 
 function App() {
+  const [user, setUser] = useState({
+    name: '',
+    token: ''
+  });
+
   return (
     <div className="App">
       <GlobalStyle />
-      <RoutesConfig />
+      <UserContext.Provider value={{ user, setUser }} >
+        <RoutesConfig />
+      </UserContext.Provider>
     </div>
   );
 }
