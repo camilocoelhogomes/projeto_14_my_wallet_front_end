@@ -8,17 +8,17 @@ const GlobalStyle = createGlobalStyle`
 
 @font-face {
   font-family: SairaStencilOne;
-  src: url(${SairaStencilOne});
+  src: url(${SairaStencilOne},ttf);
 }
 
 @font-face {
   font-family: RelewayNormal;
-  src: url(${RelewayNormal});
+  src: url(${RelewayNormal},ttf);
 }
 
 @font-face {
   font-family: RelewayBold;
-  src: url(${RelewayBold});
+  src: url(${RelewayBold},ttf);
 }
 
 html, body, div, span, applet, object, iframe,
@@ -50,7 +50,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
     background-color: #8F53BF;
-    padding: 24px 16px 16px 24px;
+    padding: 24px 16px 16px 16px;
 
 }
 ol, ul {
@@ -81,6 +81,7 @@ h2{
     font-size: 26px;
     line-height: 31px;
     color:#FFFFFF;
+    font-weight: 700;
 }
 
 input:focus, textarea:focus, select:focus{
