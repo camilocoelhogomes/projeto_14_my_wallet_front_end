@@ -14,13 +14,13 @@ const RoutesConfig = () => {
 	return (
 		<BrowserRouter>
 			<Switch>
-				<Route path='/1' exact>
+				<Route path='/' exact>
 					<Login />
 				</Route>
-				<Route path='/SignUp' exact>
+				<Route path='/sign-up' exact>
 					<SignUp />
 				</Route>
-				<Route path='/' exact>
+				<Route path='/contabil-data' exact>
 					<Extrato />
 				</Route>
 			</Switch>

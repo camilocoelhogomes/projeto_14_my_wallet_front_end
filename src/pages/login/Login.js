@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from 'react-router-dom';
 import StyledInput from "../../components/StyledInput";
 import StyledButton from "../../components/StyledButton";
-import { siginIn } from "../../servicces/backEndConnection";
+import { signIn } from "../../servicces/backEndConnection";
 import { siginInSchema } from "../../servicces/validations";
 import UserContext from "../../store/UserContext";;
 
@@ -34,7 +34,7 @@ const Login = () => {
         }
         setInputError(!!joiError);
         setDisabledForm(true);
-        siginIn(userData)
+        signIn(userData)
             .then((res) => {
                 setDisabledForm(false);
                 setUser({
@@ -70,7 +70,7 @@ const Login = () => {
                 <StyledButton type='submit'>
                     Entrar
                 </StyledButton>
-                <Link to='/SignUp'>
+                <Link to='/sign-up'>
                     <StyledButton themeType='secundary'>
                         Primeira vez? Cadastre-se!
                     </StyledButton>

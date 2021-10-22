@@ -7,18 +7,18 @@ import SairaStencilOne from '../fonts/Saira_Stencil_One/SairaStencilOne-Regular.
 const GlobalStyle = createGlobalStyle`
 
 @font-face {
-  font-family: SairaStencilOne;
-  src: url(${SairaStencilOne},ttf);
+  font-family: 'SairaStencilOne';
+  src: url(${SairaStencilOne}) format('truetype');
 }
 
 @font-face {
-  font-family: RelewayNormal;
-  src: url(${RelewayNormal},ttf);
+  font-family: 'RelewayNormal';
+  src: url(${RelewayNormal}) format('truetype');
 }
 
 @font-face {
-  font-family: RelewayBold;
-  src: url(${RelewayBold},ttf);
+  font-family: 'RelewayBold';
+  src: url(${RelewayBold}) format('truetype');
 }
 
 html, body, div, span, applet, object, iframe,
@@ -70,14 +70,14 @@ table {
 }
 
 h1{
-    font-family: 'SairaStencilOne', cursive;
+    font-family: 'SairaStencilOne', sans-serif;
     font-size: 32px;
     line-height: 50px;
     color:#FFFFFF;
 }
 
 h2{
-    font-family: 'RelawayBold', sans-serif;
+    font-family: 'RelawayBold';
     font-size: 26px;
     line-height: 31px;
     color:#FFFFFF;

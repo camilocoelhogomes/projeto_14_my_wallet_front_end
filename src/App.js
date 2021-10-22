@@ -6,7 +6,10 @@ import RoutesConfig from "./RoutesConfig/RoutesConfig";
 function App() {
   const [user, setUser] = useState({
     name: '',
-    token: ''
+    email: '',
+    password: '',
+    passwordConfirm: '',
+    token: '',
   });
 
   return (
