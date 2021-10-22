@@ -25,21 +25,24 @@ const Extrato = () => {
                 console.log(err);
                 history.push('/');
             })
-    }, [])
+    }, []);
+    const logOut = () => {
+        localStorage.removeItem('myWallet');
+        history.push('/');
+    }
     return (
         <StyledExtrato transactions={!transactions.length}>
             <div className='header-extrato'>
                 <h2>Olá, {user.name}</h2>
-                <HeaderIcon />
+                <button onClick={logOut} className='logout-button'>
+                    <HeaderIcon />
+                </button>
             </div>
             <div className='data-extrato'>
                 {
-
                     !transactions.length ?
                         <p className='no-movments'>Não há registros de <br /> entrada ou saída</p> :
                         <p>Tem Transação</p>
-
-
                 }
 
             </div>

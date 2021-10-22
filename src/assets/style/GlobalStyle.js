@@ -91,6 +91,11 @@ input:focus, textarea:focus, select:focus{
 *{
     box-sizing: border-box;
 }
+button{
+  cursor: pointer;
+  background-color: inherit;
+  border: none;
+}
 `
 
 export default GlobalStyle;

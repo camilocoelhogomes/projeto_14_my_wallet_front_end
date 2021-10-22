@@ -13,7 +13,7 @@ import UserContext from "../store/UserContext";
 
 const RoutesConfig = () => {
 	const history = useHistory();
-	const { user, setUser } = useContext(UserContext);
+	const { setUser } = useContext(UserContext);
 	useEffect(() => {
 		if (localStorage.getItem('myWallet')) {
 			setUser(JSON.parse(localStorage.getItem('myWallet')));
