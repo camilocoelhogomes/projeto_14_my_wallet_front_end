@@ -29,17 +29,16 @@ const Extrato = () => {
     return (
         <StyledExtrato transactions={!transactions.length}>
             <div className='header-extrato'>
-                <h2>Olá {user.name}</h2>
+                <h2>Olá, {user.name}</h2>
                 <HeaderIcon />
             </div>
             <div className='data-extrato'>
                 {
-                    transactions ?
-                        !transactions.length ?
-                            <p className='no-movments'>Não há registros de entrada ou saída</p> :
-                            <p>Tem Transação</p>
-                        :
-                        <></>
+
+                    !transactions.length ?
+                        <p className='no-movments'>Não há registros de <br /> entrada ou saída</p> :
+                        <p>Tem Transação</p>
+
 
                 }
 
@@ -64,6 +63,9 @@ const StyledExtrato = styled.div`
         width: 100%;
         background-color: #FFFFFF;
         border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: ${({ transactions }) => transactions ? 'center' : 'flex-start'};
     }
 
     .inputs-extrato{
@@ -75,6 +77,9 @@ const StyledExtrato = styled.div`
     .no-movments{
         font-family: 'RelewayNormal';
         font-size: 20px;
+        text-align: center;
+        color: #868686;
+        line-height: 23px;
     }
     .header-extrato{
         display: flex;
