@@ -40,7 +40,7 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
-	font-family: 'RelawayNormal';
+	font-family: 'RelewayBold';
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -77,7 +77,7 @@ h1{
 }
 
 h2{
-    font-family: 'RelawayBold';
+    font-family: 'RelewayBold';
     font-size: 26px;
     line-height: 31px;
     color:#FFFFFF;

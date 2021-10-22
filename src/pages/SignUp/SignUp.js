@@ -20,6 +20,8 @@ const SignUp = () => {
         event.preventDefault();
         signUp(user).then((res) => {
             history.push('/');
+        }).catch((err) => {
+
         })
     }
 

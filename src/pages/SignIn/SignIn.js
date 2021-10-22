@@ -1,46 +1,36 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import StyledInput from "../../components/StyledInput";
 import StyledButton from "../../components/StyledButton";
 import { signIn } from "../../servicces/backEndConnection";
-import { siginInSchema } from "../../servicces/validations";
+
 import UserContext from "../../store/UserContext";;
 
-const Login = () => {
-    const [userData, setUserData] = useState({
-        email: '',
-        password: '',
-    });
+const SignIn = () => {
 
     const [disabledForm, setDisabledForm] = useState(false);
     const [inputError, setInputError] = useState(false);
-    const { setUser } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
+    const history = useHistory();
 
     const inputHandler = ({ input, value }) => {
         setInputError(false);
-        const newUserData = { ...userData };
+        const newUserData = { ...user };
         newUserData[input] = value;
-        setUserData(newUserData);
+        setUser(newUserData);
     }
 
     const sendToServer = (e) => {
         e.preventDefault();
         if (disabledForm) return
-        const { error: joiError } = siginInSchema.validate(userData);
-        if (joiError) {
-            setInputError(!!joiError);
-            return;
-        }
-        setInputError(!!joiError);
         setDisabledForm(true);
-        signIn(userData)
+        signIn(user)
             .then((res) => {
                 setDisabledForm(false);
-                setUser({
-                    name: res.data.name,
-                    token: res.data.token,
-                })
+                setUser(res.data);
+                localStorage.setItem('myWallet', JSON.stringify(res.data));
+                history.push('/contabil-data');
             })
             .catch((err) => {
                 setInputError(true)
@@ -80,7 +70,7 @@ const Login = () => {
     )
 }
 
-export default Login
+export default SignIn;
 
 const StyledLogin = styled.div`
    display: flex;
