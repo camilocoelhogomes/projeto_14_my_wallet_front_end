@@ -1,16 +1,26 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useContext } from "react";
+import UserContext from "../store/UserContext";
+import { useHistory } from "react-router";
 
-const StyledInputButton = ({ icon, text }) => {
+const StyledInputButton = ({ icon, text, type }) => {
+    const { setTransactionType } = useContext(UserContext);
+    const history = useHistory();
+
+    const addTransactionHandler = ({ type }) => {
+        setTransactionType(type);
+        history.push('/add-transaction');
+    }
+
     return (
-        <Style>
+        <Style onClick={() => addTransactionHandler({ type })}>
             <p>{icon}</p>
             <p className='styled-input-p'>{text}</p>
         </Style>
     )
 }
 
-const Style = styled.div`
+const Style = styled.button`
     cursor: pointer;
     background-color: #A328D6;
     height: 100%;
@@ -26,6 +36,7 @@ const Style = styled.div`
     justify-content: space-between;
     .styled-input-p{
         width: 50px;
+        text-align: start;
     }
 `;
 

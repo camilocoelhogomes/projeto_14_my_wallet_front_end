@@ -13,11 +13,12 @@ function App() {
 		passwordConfirm: '',
 		token: '',
 	});
+	const [transactionType, setTransactionType] = useState(false);
 
 	return (
 		<div className="App">
 			<GlobalStyle />
-			<UserContext.Provider value={{ user, setUser }} >
+			<UserContext.Provider value={{ user, setUser, transactionType, setTransactionType }} >
 				<BrowserRouter>
 					<RoutesConfig />
 				</BrowserRouter>

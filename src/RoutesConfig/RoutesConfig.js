@@ -10,6 +10,7 @@ import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
 import Extrato from "../pages/extrato/Extrato";
 import UserContext from "../store/UserContext";
+import AddTransaction from "../pages/addTransaction/AddTransaction";
 
 const RoutesConfig = () => {
 	const history = useHistory();
@@ -19,7 +20,7 @@ const RoutesConfig = () => {
 			setUser(JSON.parse(localStorage.getItem('myWallet')));
 			history.push('/contabil-data');
 		}
-	}, [])
+	}, [history, setUser])
 	return (
 
 		<Switch>
@@ -31,6 +32,9 @@ const RoutesConfig = () => {
 			</Route>
 			<Route path='/contabil-data' exact>
 				<Extrato />
+			</Route>
+			<Route path='/add-transaction' exact>
+				<AddTransaction />
 			</Route>
 		</Switch>
 	)

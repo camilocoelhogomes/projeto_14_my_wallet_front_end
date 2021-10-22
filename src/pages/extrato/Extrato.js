@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router";
+import { useHistory, Link } from "react-router";
 import StyledInputButton from "../../components/StyledInputsButtons";
 import {
     HeaderIcon,
@@ -10,26 +10,31 @@ import {
 import UserContext from "../../store/UserContext";
 import { getData } from "../../servicces/backEndConnection";
 
+
 const Extrato = () => {
-    const { user } = useContext(UserContext);
+    const { user, setTransactionType } = useContext(UserContext);
     const [transactions, setTransactions] = useState(false);
     const history = useHistory();
+
     useEffect(() => {
-        console.log(user);
         getData({ token: user.token })
             .then((res) => {
                 if (res.status === 204) {
                     setTransactions([])
                 }
             }).catch(err => {
-                console.log(err);
+                if (err.status === 401) {
+                    localStorage.removeItem('myWallet');
+                }
                 history.push('/');
             })
     }, []);
+
     const logOut = () => {
         localStorage.removeItem('myWallet');
         history.push('/');
     }
+
     return (
         <StyledExtrato transactions={!transactions.length}>
             <div className='header-extrato'>
@@ -47,8 +52,21 @@ const Extrato = () => {
 
             </div>
             <div className='inputs-extrato'>
-                <StyledInputButton text={'Nova entrada'} icon={<PlusIcon />} />
-                <StyledInputButton text={'Nova Saida'} icon={<MinusIcon />} />
+
+
+                <StyledInputButton
+                    type='credit'
+                    text={'Nova entrada'}
+                    icon={<PlusIcon />}
+                />
+
+                <StyledInputButton
+                    type='debit'
+                    text={'Nova Saida'}
+                    icon={<MinusIcon />}
+                />
+
+
             </div>
         </StyledExtrato>
     )
