@@ -9,6 +9,7 @@ import {
 } from "../../assets/icons/icons";
 import UserContext from "../../store/UserContext";
 import { getData } from "../../servicces/backEndConnection";
+import Transaction from "./Transations";
 
 
 const Extrato = () => {
@@ -21,7 +22,9 @@ const Extrato = () => {
             .then((res) => {
                 if (res.status === 204) {
                     setTransactions([])
+                    return;
                 }
+                setTransactions(res.data.movments);
             }).catch(err => {
                 if (err.status === 401) {
                     localStorage.removeItem('myWallet');
@@ -47,7 +50,10 @@ const Extrato = () => {
                 {
                     !transactions.length ?
                         <p className='no-movments'>Não há registros de <br /> entrada ou saída</p> :
-                        <p>Tem Transação</p>
+                        transactions.map(transaction => <Transaction
+                            key={transaction.id}
+                            transaction={transaction}
+                        />)
                 }
 
             </div>
@@ -87,6 +93,7 @@ const StyledExtrato = styled.div`
         display: flex;
         flex-direction: column;
         justify-content: ${({ transactions }) => transactions ? 'center' : 'flex-start'};
+        padding: ${({ transactions }) => transactions ? '0' : '23px 10px 10px 10px'};
     }
 
     .inputs-extrato{
