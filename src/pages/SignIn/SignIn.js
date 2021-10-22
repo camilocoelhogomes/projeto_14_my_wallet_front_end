@@ -49,6 +49,7 @@ const SignIn = () => {
                     error={inputError}
                     placeholder='E-mail'
                     onChange={(e) => inputHandler({ input: 'email', value: e.target.value })}
+                    value={user.email}
                 />
                 <StyledInput
                     disabled={disabledForm}
@@ -56,6 +57,7 @@ const SignIn = () => {
                     placeholder='Senha'
                     onChange={(e) => inputHandler({ input: 'password', value: e.target.value })}
                     type='password'
+                    value={user.password}
                 />
                 <StyledButton type='submit'>
                     Entrar
