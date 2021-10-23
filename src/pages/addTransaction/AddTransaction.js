@@ -20,7 +20,6 @@ const AddTransaction = () => {
         const newerEntrie = { ...newEntrie };
         newerEntrie[entrie] = entrieValue;
         setNewEntrie(newerEntrie);
-        console.log(newEntrie);
     }
 
     const submitHandler = (event) => {
