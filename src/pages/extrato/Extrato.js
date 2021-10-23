@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
-import { useHistory, Link } from "react-router";
+import { useHistory } from "react-router";
 import StyledInputButton from "../../components/StyledInputsButtons";
 import {
     HeaderIcon,
@@ -8,12 +8,12 @@ import {
     PlusIcon
 } from "../../assets/icons/icons";
 import UserContext from "../../store/UserContext";
-import { getData } from "../../servicces/backEndConnection";
+import { getData, logOutDb } from "../../servicces/backEndConnection";
 import Transaction from "./Transations";
 
 
 const Extrato = () => {
-    const { user, setTransactionType } = useContext(UserContext);
+    const { user } = useContext(UserContext);
     const [saldo, setSaldo] = useState(false);
     const [transactions, setTransactions] = useState(false);
     const history = useHistory();
@@ -37,6 +37,7 @@ const Extrato = () => {
 
     const logOut = () => {
         localStorage.removeItem('myWallet');
+        logOutDb({ token: user.token });
         history.push('/');
     }
 
@@ -121,6 +122,9 @@ const StyledExtrato = styled.div`
     .transacions-area{
         overflow: scroll;
         height: calc(100vh - 143px - 78px - 24px);
+        justify-content: ${({ transactions }) => transactions ? 'center' : 'space-between'};
+        display: flex;
+        flex-direction: column;
     }
     .data-saldo{
         bottom: 0;

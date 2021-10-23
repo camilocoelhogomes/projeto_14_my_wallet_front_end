@@ -15,9 +15,11 @@ const postTransaction = ({
     value,
     token
 }) => { return axios.post(`${API}/contabil-data`, { description, contabilType, value }, createHeaders(token)) };
+const logOutDb = ({ token }) => axios.post(`${API}/log-out`, {}, createHeaders(token));
 export {
     signIn,
     signUp,
     getData,
-    postTransaction
+    postTransaction,
+    logOutDb
 }
