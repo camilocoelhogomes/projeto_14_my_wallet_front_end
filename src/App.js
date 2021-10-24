@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import UserContext from './store/UserContext';
 import GlobalStyle from "./assets/style/GlobalStyle";
@@ -14,6 +14,18 @@ function App() {
 		token: '',
 	});
 	const [transactionType, setTransactionType] = useState(false);
+
+	useEffect(() => {
+		if (localStorage.getItem('myWallet')) {
+			const localUser = JSON.parse(localStorage.getItem('myWallet'));
+			setUser({
+				...user,
+				name: localUser.name,
+				token: localUser.token
+			});
+		}
+		console.log(user);
+	}, [setUser])
 
 	return (
 		<div className="App">

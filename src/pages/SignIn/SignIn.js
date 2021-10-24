@@ -30,7 +30,7 @@ const SignIn = () => {
                 setDisabledForm(false);
                 setUser(res.data);
                 localStorage.setItem('myWallet', JSON.stringify(res.data));
-                history.push('/contabil-data');
+                history.push('/');
             })
             .catch((err) => {
                 setInputError(true)

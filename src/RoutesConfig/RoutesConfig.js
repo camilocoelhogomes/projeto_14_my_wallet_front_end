@@ -14,23 +14,17 @@ import AddTransaction from "../pages/addTransaction/AddTransaction";
 
 const RoutesConfig = () => {
 	const history = useHistory();
-	const { setUser } = useContext(UserContext);
-	useEffect(() => {
-		if (localStorage.getItem('myWallet')) {
-			setUser(JSON.parse(localStorage.getItem('myWallet')));
-			history.push('/contabil-data');
-		}
-	}, [history, setUser])
+
 	return (
 
 		<Switch>
-			<Route path='/' exact>
+			<Route path='/sign-in' exact>
 				<SignIn />
 			</Route>
 			<Route path='/sign-up' exact>
 				<SignUp />
 			</Route>
-			<Route path='/contabil-data' exact>
+			<Route path='/' exact>
 				<Extrato />
 			</Route>
 			<Route path='/add-transaction' exact>

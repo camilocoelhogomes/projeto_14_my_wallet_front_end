@@ -29,7 +29,7 @@ const AddTransaction = () => {
             token: user.token
         }).then((res) => {
             setTransactionType(false);
-            history.push('/contabil-data')
+            history.push('/')
         })
     }
 

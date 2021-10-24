@@ -13,26 +13,37 @@ import Transaction from "./Transations";
 
 
 const Extrato = () => {
-    const { user } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
     const [saldo, setSaldo] = useState(false);
     const [transactions, setTransactions] = useState(false);
     const history = useHistory();
 
     useEffect(() => {
-        getData({ token: user.token })
-            .then((res) => {
-                if (res.status === 204) {
-                    setTransactions([])
-                    return;
-                }
-                setTransactions(res.data.movments);
-                setSaldo(Number(res.data.total));
-            }).catch(err => {
-                if (err.status === 401) {
-                    localStorage.removeItem('myWallet');
-                }
-                history.push('/');
-            })
+        if (localStorage.getItem('myWallet')) {
+            const localUser = JSON.parse(localStorage.getItem('myWallet'));
+            setUser({
+                ...user,
+                name: localUser.name,
+                token: localUser.token
+            });
+            getData({ token: localUser.token })
+                .then((res) => {
+                    if (res.status === 204) {
+                        setTransactions([])
+                        return;
+                    }
+                    setTransactions(res.data.movments);
+                    setSaldo(Number(res.data.total));
+                }).catch(err => {
+                    if (err.status === 401) {
+                        localStorage.removeItem('myWallet');
+                    }
+                    history.push('/sign-in');
+                })
+        } else {
+            history.push('/sign-in');
+        }
+
     }, []);
 
     const logOut = () => {
@@ -110,7 +121,6 @@ const StyledExtrato = styled.div`
     .data-extrato{
         height: calc(100vh - 143px - 78px);
         width: 100%;
-        overflow: scroll;
         background-color: #FFFFFF;
         border-radius: 5px;
         display: flex;
@@ -122,7 +132,7 @@ const StyledExtrato = styled.div`
     .transacions-area{
         overflow: scroll;
         height: calc(100vh - 143px - 78px - 24px);
-        justify-content: ${({ transactions }) => transactions ? 'center' : 'space-between'};
+        justify-content: ${({ transactions }) => transactions ? 'center' : 'flex-start'};
         display: flex;
         flex-direction: column;
     }
