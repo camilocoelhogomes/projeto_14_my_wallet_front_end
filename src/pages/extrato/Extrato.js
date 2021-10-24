@@ -49,7 +49,7 @@ const Extrato = () => {
     const logOut = () => {
         localStorage.removeItem('myWallet');
         logOutDb({ token: user.token });
-        history.push('/');
+        history.push('/sign-in');
     }
 
     return (
