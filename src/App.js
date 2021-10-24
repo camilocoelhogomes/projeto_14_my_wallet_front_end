@@ -24,7 +24,6 @@ function App() {
 				token: localUser.token
 			});
 		}
-		console.log(user);
 	}, [setUser])
 
 	return (
