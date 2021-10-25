@@ -30,7 +30,14 @@ const AddTransaction = () => {
         }).then((res) => {
             setTransactionType(false);
             history.push('/')
-        })
+        }).catch(err => {
+
+            if (err.response.status === 401) {
+                setTransactionType(false);
+                history.push('/sign-in');
+            }
+        }
+        )
     }
 
     return (
