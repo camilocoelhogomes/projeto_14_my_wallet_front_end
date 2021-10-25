@@ -24,7 +24,7 @@ function App() {
 				token: localUser.token
 			});
 		}
-	}, [setUser])
+	}, [])
 
 	return (
 		<div className="App">
