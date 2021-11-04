@@ -5,6 +5,7 @@ import StyledInput from "../../components/StyledInput";
 import StyledButton from "../../components/StyledButton";
 import UserContext from "../../store/UserContext";
 import { signUp } from "../../servicces/backEndConnection";
+import PassWordRequirements from "./PassWordRequirements";
 
 const SignUp = () => {
 
@@ -49,6 +50,7 @@ const SignUp = () => {
                     type='password'
                     onChange={(event) => inputHandler({ input: 'passwordConfirm', value: event.target.value })}
                 />
+                <PassWordRequirements password={user.password} passwordConfirm={ user.passwordConfirm}/>
                 <StyledButton type='submit'>
                     Cadastrar
                 </StyledButton>
